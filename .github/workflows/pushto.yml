@@ -1,0 +1,16 @@
+stages:
+  - deploy_to_prod
+
+variables:
+  TEST_REGISTRY: registry.example.com/test_repo  # Replace with your test repository URL
+  PROD_REGISTRY: registry.example.com/prod_repo  # Replace with your production repository URL
+  IMAGE_NAME: your_image_name
+
+deploy_to_prod: 
+  stage: deploy_to_prod
+  script:
+    - docker pull $TEST_REGISTRY/$IMAGE_NAME
+    - docker tag $TEST_REGISTRY/$IMAGE_NAME $PROD_REGISTRY/$IMAGE_NAME
+    - docker push $PROD_REGISTRY/$IMAGE_NAME
+  only:
+    - master  # Run this job only on changes to the master branch or other branches as needed

@@ -6,7 +6,7 @@ variables:
   PROD_REGISTRY: registry.example.com/prod_repo  # Replace with your production repository URL
   IMAGE_NAME: your_image_name
 
-deploy_to_prod:
+deploy_to_prod: 
   stage: deploy_to_prod
   script:
     - docker pull $TEST_REGISTRY/$IMAGE_NAME
